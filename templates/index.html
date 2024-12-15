@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain to IP Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        .banner {
+            font-family: monospace;
+            color: blue;
+            white-space: pre;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e6ffe6;
+            color: #2d572c;
+            display: inline-block;
+            border: 1px solid #b7e4b7;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Domain to IP Converter</h1>
+    <div class="banner">
+        {{ banner }}
+    </div>
+    <div class="container">
+        <form method="POST" action="/get_ip">
+            <input type="text" name="domain" placeholder="Enter domain name" required>
+            <button type="submit">Get IP</button>
+        </form>
+
+        {% if success %}
+        <div class="result">
+            <p>Domain: <strong>{{ domain }}</strong></p>
+            <p>IP Address: <strong>{{ ip }}</strong></p>
+        </div>
+        {% elif error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
